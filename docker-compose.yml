@@ -1,0 +1,27 @@
+version: '3'
+services:
+
+  nginx:
+    container_name: nginx
+    build: ./nginx
+    image: jump2django/nginx
+    # restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./jump2django:/srv/jump2django
+      - ./log:/var/log/nginx
+    depends_on:
+      - django
+    
+  django:
+    container_name: django
+    build: ./jump2django
+    image: jump2django/django
+    # restart: always
+    ports:
+      - "8000:8000"
+    volumes: 
+      - ./jump2django:/srv/jump2django
+      - ./log:/var/log/gunicorn
+

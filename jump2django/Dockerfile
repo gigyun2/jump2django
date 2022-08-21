@@ -9,8 +9,8 @@ RUN pip install -r requirements.txt
 ## Copy all src files
 COPY . .
 
+# gunicorn dist
 ## Run the app on the port 8000
 EXPOSE 8000
-
-# gunicorn dist
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "config.wsgi:application"]
+CMD ["gunicorn", "--bind", "0:8000", "config.wsgi:application"]
+# CMD ["gunicorn", "--bind", "unix:/tmp/gunicorn.sock", "config.wsgi:application"]
