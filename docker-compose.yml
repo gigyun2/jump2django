@@ -9,8 +9,9 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./jump2django:/srv/jump2django
-      - ./log:/var/log/nginx
+      - tmp:/tmp/
+      - source:/srv
+      - ./log/nginx:/var/log/nginx
     depends_on:
       - django
     
@@ -19,9 +20,13 @@ services:
     build: ./jump2django
     image: jump2django/django
     # restart: always
-    ports:
-      - "8000:8000"
-    volumes: 
-      - ./jump2django:/srv/jump2django
-      - ./log:/var/log/gunicorn
+    # ports:
+    #   - "8000:8000"
+    volumes:
+      - tmp:/tmp/
+      - source:/usr/src/app/
+      - ./log/gunicorn:/var/log/gunicorn
 
+volumes:
+  tmp:
+  source:

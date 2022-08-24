@@ -11,6 +11,7 @@ COPY . .
 
 # gunicorn dist
 ## Run the app on the port 8000
-EXPOSE 8000
-CMD ["gunicorn", "--bind", "0:8000", "config.wsgi:application"]
-# CMD ["gunicorn", "--bind", "unix:/tmp/gunicorn.sock", "config.wsgi:application"]
+# EXPOSE 8000
+# CMD ["gunicorn", "--bind", "0:8000", "config.wsgi:application"]
+## Run the app through socket
+CMD ["gunicorn", "--bind", "unix:/tmp/gunicorn.sock", "config.wsgi:application"]
