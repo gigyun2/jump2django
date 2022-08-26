@@ -10,7 +10,7 @@ services:
       - "80:80"
     volumes:
       - tmp:/tmp/
-      - source:/srv
+      - static:/srv/static
       - ./log/nginx:/var/log/nginx
     depends_on:
       - django
@@ -24,9 +24,9 @@ services:
     #   - "8000:8000"
     volumes:
       - tmp:/tmp/
-      - source:/usr/src/app/
+      - static:/usr/src/app/static
       - ./log/gunicorn:/var/log/gunicorn
 
 volumes:
   tmp:
-  source:
+  static:

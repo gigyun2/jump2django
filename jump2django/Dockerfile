@@ -9,6 +9,12 @@ RUN pip install -r requirements.txt
 ## Copy all src files
 COPY . .
 
+# set env value to production setting
+ENV DJANGO_SETTINGS_MODULE=config.settings.prod
+
+# collect static files
+RUN python manage.py collectstatic --skip-checks
+
 # gunicorn dist
 ## Run the app on the port 8000
 # EXPOSE 8000
