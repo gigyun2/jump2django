@@ -1,11 +1,14 @@
+import logging
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 
 from pybo.models import Question
 
+logger = logging.getLogger('pybo')
 
 def index(request):
+    # logger.info("INFO index page called")
     page = request.GET.get('page', '1')
     kw = request.GET.get('kw', '')
     question_list = Question.objects.order_by('create_date')
